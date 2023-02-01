@@ -1,10 +1,10 @@
 terraform {
   cloud {
     hostname = "app.terraform.io"
-    organization = "rparmer"
+    organization = "terraform-controller-demo"
 
     workspaces {
-      name = "config"
+      name = "tfc-wge-demo-config"
     }
   }
 }
