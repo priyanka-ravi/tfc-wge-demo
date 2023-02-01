@@ -28,7 +28,7 @@ module "node_group" {
   cluster_name              = var.cluster_name
   node_group_name           = "${var.cluster_name}-ng"
   vpc_id                    = data.aws_eks_cluster.this.vpc_config.vpc_id
-  subnet_ids                = var.subnet_ids
+  subnet_ids                = split(",", var.subnet_ids)
   cluster_security_group_id = data.aws_eks_cluster.this.vpc_config.cluster_security_group_id
   desired_size              = var.desired_size
   min_size                  = var.min_size

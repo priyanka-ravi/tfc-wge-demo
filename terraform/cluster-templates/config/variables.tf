@@ -10,7 +10,7 @@ variable "cluster_name" {
 }
 
 variable "subnet_ids" {
-  type        = list(string)
+  type        = string
   description = "subnets to associate with node group"
 }
 
