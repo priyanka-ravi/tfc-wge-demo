@@ -59,5 +59,5 @@ variable "cluster_admin_users" {
 variable "cluster_admin_roles" {
   type        = list(string)
   description = "list of IAM roles to be granted admin access in eks aws_auth configmap"
-  default     = []
+  default     = ["AdministratorAccess"]
 }
