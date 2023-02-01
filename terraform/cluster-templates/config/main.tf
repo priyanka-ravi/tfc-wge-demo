@@ -27,9 +27,9 @@ module "node_group" {
   source                    = "github.com/rparmer/tfc-wge-demo.git//terraform/modules/node-group"
   cluster_name              = var.cluster_name
   node_group_name           = "${var.cluster_name}-ng"
-  vpc_id                    = data.aws_eks_cluster.this.vpc_config.vpc_id
+  vpc_id                    = data.aws_eks_cluster.this.vpc_config[0].vpc_id
   subnet_ids                = split(",", var.subnet_ids)
-  cluster_security_group_id = data.aws_eks_cluster.this.vpc_config.cluster_security_group_id
+  cluster_security_group_id = data.aws_eks_cluster.this.vpc_config[0].cluster_security_group_id
   desired_size              = var.desired_size
   min_size                  = var.min_size
   max_size                  = var.max_size
