@@ -63,8 +63,13 @@ spec:
             destroyResourcesOnDeletion: false
             writeOutputsToSecret:
               name: '{{ .params.CLUSTER_NAME }}-core-outputs'
-            backendConfig:
-              disable: true
+            # backendConfig:
+            #   disable: true
+            cloud:
+              hostname: app.terraform.io
+              organization: terraform-controller-demo
+              workspaces:
+                name: '{{ .params.CLUSTER_NAME }}-core'
             cliConfigSecretRef:
               name: tfc-cli-config
             vars:
@@ -97,8 +102,13 @@ spec:
             path: ./cluster-templates/leaf-cluster-config
             approvePlan: auto
             destroyResourcesOnDeletion: false
-            backendConfig:
-              disable: true
+            # backendConfig:
+            #   disable: true
+            cloud:
+              hostname: app.terraform.io
+              organization: terraform-controller-demo
+              workspaces:
+                name: '{{ .params.CLUSTER_NAME }}-config'
             cliConfigSecretRef:
               name: tfc-cli-config
             vars:
