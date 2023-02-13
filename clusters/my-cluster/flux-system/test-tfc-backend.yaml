@@ -65,7 +65,7 @@ spec:
   - name: test-tfc-backend-core
   destroyResourcesOnDeletion: false
   interval: 1h
-  path: ./cluster-templates/leaf-cluster-config
+  path: ./cluster-templates/config
   retryInterval: 20s
   sourceRef:
     kind: GitRepository
