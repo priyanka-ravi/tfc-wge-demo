@@ -3,12 +3,12 @@ kind: Terraform
 metadata:
   annotations:
     templates.weave.works/create-request: '{"repository_url":"https://github.com/priyanka-ravi/tfc-wge-demo","head_branch":"wge-create-branch-yxd1up","title":"Creates
-      resource test-tfc-backend","description":"This PR creates a tfc-demo instance","template_name":"tfc-demo","parameter_values":{"AWS_REGION":"us-east-1","CAPACITY_TYPE":"ON_DEMAND","CLUSTER_NAME":"test-tfc-backend","CLUSTER_VERSION":"1.24","DESIRED_SIZE":"2","INSTANCE_TYPE":"t3.medium","MAX_SIZE":"3","MIN_SIZE":"1","PRIVATE_SUBNET_COUNT":"3","PUBLIC_SUBNET_COUNT":"3","VPC_CIDR":"10.0.0.0/16"},"commit_message":"Creates
+      resource tfc-wge-demo","description":"This PR creates a tfc-demo instance","template_name":"tfc-demo","parameter_values":{"AWS_REGION":"us-east-1","CAPACITY_TYPE":"ON_DEMAND","CLUSTER_NAME":"tfc-wge-demo","CLUSTER_VERSION":"1.24","DESIRED_SIZE":"2","INSTANCE_TYPE":"t3.medium","MAX_SIZE":"3","MIN_SIZE":"1","PRIVATE_SUBNET_COUNT":"3","PUBLIC_SUBNET_COUNT":"3","VPC_CIDR":"10.0.0.0/16"},"commit_message":"Creates
       tfc-demo instance","credentials":{},"template_namespace":"default","template_kind":"GitOpsTemplate"}'
   labels:
     templates.weave.works/template-name: tfc-demo
     templates.weave.works/template-namespace: default
-  name: test-tfc-backend-core
+  name: tfc-wge-demo-core
   namespace: flux-system
 spec:
   approvePlan: auto
@@ -18,7 +18,7 @@ spec:
     hostname: app.terraform.io
     organization: terraform-controller-demo
     workspaces:
-      name: test-tfc-backend-core
+      name: tfc-wge-demo-core
   destroyResourcesOnDeletion: false
   interval: 1h
   path: ./terraform/cluster-templates/core
@@ -29,7 +29,7 @@ spec:
     namespace: flux-system
   vars:
   - name: cluster_name
-    value: test-tfc-backend
+    value: tfc-wge-demo
   - name: cluster_version
     value: "1.24"
   - name: region
@@ -41,7 +41,7 @@ spec:
   - name: private_subnet_count
     value: "3"
   writeOutputsToSecret:
-    name: test-tfc-backend-core-outputs
+    name: tfc-wge-demo-core-outputs
 
 ---
 apiVersion: infra.contrib.fluxcd.io/v1alpha1
@@ -50,7 +50,7 @@ metadata:
   labels:
     templates.weave.works/template-name: tfc-demo
     templates.weave.works/template-namespace: default
-  name: test-tfc-backend-config
+  name: tfc-wge-demo-config
   namespace: flux-system
 spec:
   approvePlan: auto
@@ -60,9 +60,9 @@ spec:
     hostname: app.terraform.io
     organization: terraform-controller-demo
     workspaces:
-      name: test-tfc-backend-config
+      name: tfc-wge-demo-config
   dependsOn:
-  - name: test-tfc-backend-core
+  - name: tfc-wge-demo-core
   destroyResourcesOnDeletion: false
   interval: 1h
   path: ./cluster-templates/config
@@ -73,7 +73,7 @@ spec:
     namespace: flux-system
   vars:
   - name: cluster_name
-    value: test-tfc-backend
+    value: tfc-wge-demo
   - name: region
     value: us-east-1
   - name: desired_size
